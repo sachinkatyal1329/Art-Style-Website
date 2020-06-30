@@ -1,0 +1,8 @@
+.supportingImages {
+	margin: auto;
+}
+
+.supportingImages > * {
+	display: block;
+	margin: auto;
+}

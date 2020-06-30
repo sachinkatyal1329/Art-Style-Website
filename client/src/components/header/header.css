@@ -1,0 +1,30 @@
+.banner {
+	width: 100%;
+	background: #C84B42;
+
+}
+
+.jumbotron {
+	margin: 0;
+}
+
+.index-intro {
+	padding: 50px 50px;
+
+}
+
+.index-intro h1 {
+	color: white;
+	font-weight: 200;
+	font-size: 5.2rem;
+}
+
+.index-intro h4 {
+	color: white;
+	font-weight: 100;
+	font-size: 2rem;
+}
+
+button {
+	outline: none;
+}
