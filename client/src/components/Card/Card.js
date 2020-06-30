@@ -11,6 +11,8 @@ import { Button } from 'react-bootstrap';
 
 import { useState } from 'react'
 
+import Modal from 'react-bootstrap/Modal'
+
 
 import './Card.css'
 
@@ -32,26 +34,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function test(url) {
-	console.log(url)
-}
-
-
 export default function ImageCard(props) {
-	const [show, setShow] = useState(false);
-
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
-	const classes = useStyles();
+  	const [show, setShow] = useState(false)
+	const classes = useStyles()
+	console.log(props.urlPath)
 
 	return (
 		<>
 			<Grid item key = {props.urlPath} xs = {6} sm = {4} md = {3}>
 			    <Card className={classes.card}>
-		         <button className="button-default" onClick={() => handleShow}>Show Modal</button>
-			    	
-			     <CardActionArea onClick = {(e) => (console.log(e))}>
+			     <CardActionArea onClick = {() => setShow(true)}>
 			      <CardMedia 
 			        className={classes.cardMedia}
 			        image= {props.urlPath}
@@ -59,9 +51,53 @@ export default function ImageCard(props) {
 			      />
 			      </CardActionArea>
 			    </Card>
+			    <Modal
+		            show={show}
+		            onHide={() => setShow(false)}
+		            dialogClassName="test"
+		            aria-labelledby="example-custom-modal-styling-title"
+		          >
+		            <Modal.Header closeButton>
+		              <Modal.Title id="example-custom-modal-styling-title">
+		                Create Custom Image
+		              </Modal.Title>
+		            </Modal.Header>
+		            <Modal.Body>
+		                <Card className={classes.card}>
+							<CardActionArea onClick = {() => setShow(true)}>
+							    <CardMedia 
+									className={classes.cardMedia}
+									image= {props.urlPath}
+									title="Image title"
+									/>
+							    </CardActionArea>
+		                </Card>
+		                <Card className={classes.card}>
+							<CardActionArea onClick = {() => setShow(true)}>
+							    <CardMedia 
+									className={classes.cardMedia}
+									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg"}
+									title="Image title"
+									/>
+							    </CardActionArea>
+		                </Card>
+		                <Card className={classes.card}>
+							<CardActionArea onClick = {() => setShow(true)}>
+							    <CardMedia 
+									className={classes.cardMedia}
+									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg"}
+									title="Image title"
+									/>
+							    </CardActionArea>
+		                </Card>
+		            </Modal.Body>
+		          </Modal>
 	        </Grid>
+
+
+
         </>
-	);
+	)
 
 }
 

@@ -9,11 +9,7 @@ import ImageCard from "./components/Card/Card";
 import Footer from "./components/footer/footer";
 import Navigation from "./components/navigation/nav";
 
-var hi = "hi";
-console.log("HI");
-
 let url = window.location.href;
-console.log(url);
 
 
 /*

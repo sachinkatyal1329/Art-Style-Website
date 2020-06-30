@@ -65,8 +65,8 @@ const dir = function() {
 	       		url = "http://localhost:5000/images/"
 
 	       		urls.push({
-	       			conent: url.concat(file.split("-")[0]),
-	       			style: url.concat(file.split("-")[1]),
+	       			conent: url.concat("mypic-" + file.split("-")[0]) + ".jpg",
+	       			style: url.concat("mypic-" + file.split("-")[1]),
 	       			result: urlResult.concat(file)
 	       		})
 
@@ -143,7 +143,7 @@ app.post("/",function (req, res, next) {
 			const style = names[0].split("-")[1].split(".")[0] + "-" + names[1].split("-")[1].split(".")[0] + ".png";
 
 			urls.push({
-				content: `http://localhost:5000/${names[0]}`,
+				content: `http://localhost:5000/${names[0]}.png`,
 				style: `http://localhost:5000/${names[1]}`,
 				result: `http://localhost:5000/images/result/${style}`,
 			});
