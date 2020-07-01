@@ -5,6 +5,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Redirect } from 'react-router-dom';
+
 
 import { Button } from 'react-bootstrap';
 
@@ -34,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
 export default function ImageCard(props) {
   	const [show, setShow] = useState(false)
 	const classes = useStyles()
-	console.log(props.urlPath)
 
 	return (
 		<>
@@ -64,7 +66,7 @@ export default function ImageCard(props) {
 		            </Modal.Header>
 		            <Modal.Body>
 		                <Card className={classes.card}>
-							<CardActionArea onClick = {() => setShow(true)}>
+							<CardActionArea>
 							    <CardMedia 
 									className={classes.cardMedia}
 									image= {props.urlPath}
@@ -73,7 +75,7 @@ export default function ImageCard(props) {
 							    </CardActionArea>
 		                </Card>
 		                <Card className={classes.card}>
-							<CardActionArea onClick = {() => setShow(true)}>
+							<CardActionArea>
 							    <CardMedia 
 									className={classes.cardMedia}
 									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg"}
@@ -82,7 +84,7 @@ export default function ImageCard(props) {
 							    </CardActionArea>
 		                </Card>
 		                <Card className={classes.card}>
-							<CardActionArea onClick = {() => setShow(true)}>
+							<CardActionArea onClick = {() => onSubmit()}>
 							    <CardMedia 
 									className={classes.cardMedia}
 									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg"}
@@ -93,9 +95,6 @@ export default function ImageCard(props) {
 		            </Modal.Body>
 		          </Modal>
 	        </Grid>
-
-
-
         </>
 	)
 

@@ -61,7 +61,7 @@ class Create extends Component {
             </div>
             <div className = "result">
                 { this.props.result != null &&
-                    <ImageCard onClick = {e => (console.log("HI"))} urlPath = {path.concat((this.props.result).replace("public/", ""))} />
+                    <ImageCard urlPath = {path.concat((this.props.result).replace("public/", ""))} />
                 }  
             </div>
         </form>
