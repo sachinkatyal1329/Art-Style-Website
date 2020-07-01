@@ -11,7 +11,6 @@ import Navigation from "./components/navigation/nav";
 
 let url = window.location.href;
 
-
 /*
 
 params = content: content image name
@@ -46,7 +45,7 @@ class App extends Component {
 	
   	render(props) {
     	return (
-    		<article>
+    		<>
 		   		<Header />
     			<Navigation 
     				content = {params.content} 
@@ -54,7 +53,7 @@ class App extends Component {
     				result = {params.result}
     				name = {parseInt(state)}/>
 		    	<Footer />
-    		</article>
+    		</>
 
     );
   }

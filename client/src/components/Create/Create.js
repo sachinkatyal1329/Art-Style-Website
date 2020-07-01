@@ -31,6 +31,18 @@ class Create extends Component {
     });
   }
 
+  renderContentUpload() {
+    if (this.props.content != null) return null
+    return (
+            <>
+                <h4>Content Image: </h4>
+                <input onChange = {this.handleChange} type = "file" name = "mypic" requried = "true"/> 
+                <br/>
+            </>
+    )
+
+  }
+
   render() {
 
     const path = "http://localhost:5000/"
@@ -38,15 +50,14 @@ class Create extends Component {
 
     return (
 
-        <form encType="multipart/form-data" method="POST"> 
-            <h4>Content Image: </h4>   
-            <input onChange = {this.handleChange} type="file" name="mypic" required = "true"/> <br/> 
+        <form encType="multipart/form-data" method="POST">
+            { this.renderContentUpload() }
             <h4>Style Image: </h4>
             <input onChange = {this.handleChange2} type = "file" name = "mypic" requried = "true"/> <br/>
             <button type="submit" value="submit">Submit</button>  <br/>
             <div className = "supportingImages">
                 { this.props.content != null && 
-                    <ImageCard urlPath = {path.concat((this.props.content).replace("public/", ""))} />
+                    <ImageCard name = "mypic" urlPath = {path.concat((this.props.content).replace("public/", ""))} />
                 }
                 { this.props.content == null && this.state.file != null &&
                     <ImageCard urlPath = {this.state.file} />

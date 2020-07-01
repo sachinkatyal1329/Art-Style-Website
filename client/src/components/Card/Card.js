@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ImageCard(props) {
   	const [show, setShow] = useState(false)
 	const classes = useStyles()
+	console.log(props.urlPath)
 
 	return (
 		<>
@@ -77,6 +78,7 @@ export default function ImageCard(props) {
 		                <Card className={classes.card}>
 							<CardActionArea>
 							    <CardMedia 
+							    	onClick = {() => window.location = ('http://localhost:3000/?content=public/images/mypic-' + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg")}
 									className={classes.cardMedia}
 									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg"}
 									title="Image title"
@@ -84,8 +86,9 @@ export default function ImageCard(props) {
 							    </CardActionArea>
 		                </Card>
 		                <Card className={classes.card}>
-							<CardActionArea onClick = {() => onSubmit()}>
+							<CardActionArea>
 							    <CardMedia 
+							    	onClick = {() =>  window.location = ("http://localhost:3000/?style=public/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg")}
 									className={classes.cardMedia}
 									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg"}
 									title="Image title"

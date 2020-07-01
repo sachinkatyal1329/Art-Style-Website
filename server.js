@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static('public'));
 
-
 app.get('/api/customers', (req, res) => {
 	const customers = [
 		{content: 1, style: 'Sachin', result: 'Katyal'},
@@ -124,7 +123,7 @@ var upload = multer({
 
 
 
-app.post("/",function (req, res, next) { 
+app.post("/", function (req, res, next) { 
     // Error MiddleWare for multer file upload, so if any 
     // error occurs, the image would not be uploaded! 
     upload(req,res,function(err) { 
