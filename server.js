@@ -144,7 +144,7 @@ app.post("/", function (req, res, next) {
 			}
 			if (content != undefined) {
 				names[0] = content
-			}
+			} 
 
 			// spawn new child process to call the python script
 			const python = spawn('python3', ['image.py', names[0], names[1]]);
