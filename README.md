@@ -2,7 +2,10 @@
 
 `$ npm install`
 
-`$ npm run server`
+`$ cd client`
 
-`$ npm run client`
+`$ npm install`
 
+`$ cd ..`
+
+`$ npm run dev`

@@ -128,24 +128,33 @@ app.post("/", function (req, res, next) {
 
         } 
         else { 
+			if (names.length == 1) {
+				names.push(null)
+			}
         	console.log(req.body)
-        	console.log(req.body.content);
-        	console.log(req.body.style);
+        	console.log("Content " + req.body.content);
+        	console.log("Style " + req.body.style);
 
 
         	let content = req.body.content;
         	let style = req.body.style;
 
 
-        	let result;
+			let result;
+			
+			console.log("NAMES " + names)
 
-        	if (style != undefined)  {
+			if (content != '' && content != undefined) {
+				names[1] = names[0]
+				names[0] = content
+
+			} else if (style != '' && style != undefined)  {
 				names[1] = style
 			}
-			if (content != undefined) {
-				names[0] = content
-			} 
 
+			console.log("names[0]: " + names[0])
+			console.log("names[1]:" + names[1])
+			
 			// spawn new child process to call the python script
 			const python = spawn('python3', ['image.py', names[0], names[1]]);
 			
@@ -161,9 +170,9 @@ app.post("/", function (req, res, next) {
 
 			python.stdout.on('data', function(data) { 
 	        	res.redirect(
-	        		`http://localhost:3000?content=${names[0]}&style=${names[1]}&result=public/images/result/${result}`); 
+	        		`http://localhost:3001?content=${names[0]}&style=${names[1]}&result=public/images/result/${result}`); 
 	        	names = [];
-	 	    });
+	 	    }); 
 
 			
 

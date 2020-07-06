@@ -78,7 +78,7 @@ export default function ImageCard(props) {
 		                <Card className={classes.card}>
 							<CardActionArea>
 							    <CardMedia 
-							    	onClick = {() => window.location = ('http://localhost:3000/?content=public/images/mypic-' + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg")}
+							    	onClick = {() => window.location = ('http://localhost:3001/?content=public/images/mypic-' + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg")}
 									className={classes.cardMedia}
 									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[0].split("result/")[1] + ".jpg"}
 									title="Image title"
@@ -88,7 +88,7 @@ export default function ImageCard(props) {
 		                <Card className={classes.card}>
 							<CardActionArea>
 							    <CardMedia 
-							    	onClick = {() =>  window.location = ("http://localhost:3000/?style=public/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg")}
+							    	onClick = {() =>  window.location = ("http://localhost:3001/?style=public/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg")}
 									className={classes.cardMedia}
 									image= {"http://localhost:5000/images/mypic-" + (props.urlPath).split("-")[1].split(".")[0] + ".jpg"}
 									title="Image title"

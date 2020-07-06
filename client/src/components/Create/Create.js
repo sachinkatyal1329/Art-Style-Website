@@ -8,6 +8,7 @@ class Create extends Component {
 
         super(props);
 
+        //States keep track if a file has been uploaded
         this.state = {
             file: null,  
             file2: null
