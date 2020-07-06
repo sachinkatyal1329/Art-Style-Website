@@ -43,39 +43,52 @@ class Create extends Component {
 
   }
 
+  renderStyleUpload() {
+    if (this.props.style != null) return null
+    return (
+            <>
+                <h4>Style Image: </h4>
+                <input onChange = {this.handleChange2} type = "file" name = "mypic" requried = "true"/> <br/>
+                <br/>
+            </>
+    )
+  }
+
   render() {
 
     const path = "http://localhost:5000/"
     console.log(this.props.result);
 
     return (
+        <>
+            <form encType="multipart/form-data" action = "/" method="POST">
+                { this.renderContentUpload() }
+                { this.renderStyleUpload() }
+                <input name = "content" hidden = "true" value = {this.props.content} />
+                <input name = "style" hidden = "true" value = {this.props.style} />
+                <button type="submit" value="submit">Submit</button>  <br/>
+                <div className = "supportingImages">
+                    { this.props.content != null && 
+                        <ImageCard urlPath = {path.concat((this.props.content).replace("public/", ""))} />
+                    }
+                    { this.props.content == null && this.state.file != null &&
+                        <ImageCard urlPath = {this.state.file} />
+                    }
 
-        <form encType="multipart/form-data" method="POST">
-            { this.renderContentUpload() }
-            <h4>Style Image: </h4>
-            <input onChange = {this.handleChange2} type = "file" name = "mypic" requried = "true"/> <br/>
-            <button type="submit" value="submit">Submit</button>  <br/>
-            <div className = "supportingImages">
-                { this.props.content != null && 
-                    <ImageCard name = "mypic" urlPath = {path.concat((this.props.content).replace("public/", ""))} />
-                }
-                { this.props.content == null && this.state.file != null &&
-                    <ImageCard urlPath = {this.state.file} />
-                }
-
-                { this.props.style != null &&
-                    <ImageCard urlPath = {path.concat((this.props.style).replace("public/", ""))} />
-                }  
-                { this.props.style == null && this.state.file2 != null &&
-                    <ImageCard urlPath = {this.state.file2} />
-                }
-            </div>
-            <div className = "result">
-                { this.props.result != null &&
-                    <ImageCard urlPath = {path.concat((this.props.result).replace("public/", ""))} />
-                }  
-            </div>
-        </form>
+                    { this.props.style != null &&
+                        <ImageCard urlPath = {path.concat((this.props.style).replace("public/", ""))} />
+                    }  
+                    { this.props.style == null && this.state.file2 != null &&
+                        <ImageCard urlPath = {this.state.file2} />
+                    }
+                </div>
+                <div className = "result">
+                    { this.props.result != null &&
+                        <ImageCard urlPath = {path.concat((this.props.result).replace("public/", ""))} />
+                    }  
+                </div>
+            </form>
+        </>
 
     );
   }

@@ -10,9 +10,6 @@ var urls = [];
 
 var names = [];
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-
 app.get('/', (req, res) => {
 	res.render('index.ejs', {user: "HI"});	
 });
@@ -20,13 +17,6 @@ app.get('/', (req, res) => {
 app.use(express.static('public'));
 
 app.get('/api/customers', (req, res) => {
-	const customers = [
-		{content: 1, style: 'Sachin', result: 'Katyal'},
-		{id: 2, firstName: 'Saahil', lastName: 'Katyal'},
-		{id: 3, firstName: 'PeePee', lastName: 'PooPoo'}
-	];
-
-	console.log("uploaded");
 	res.json(urls);
 });   
 
@@ -124,6 +114,7 @@ var upload = multer({
 
 
 app.post("/", function (req, res, next) { 
+
     // Error MiddleWare for multer file upload, so if any 
     // error occurs, the image would not be uploaded! 
     upload(req,res,function(err) { 
@@ -137,27 +128,49 @@ app.post("/", function (req, res, next) {
 
         } 
         else { 
+        	console.log(req.body)
+        	console.log(req.body.content);
+        	console.log(req.body.style);
+
+
+        	let content = req.body.content;
+        	let style = req.body.style;
+
+
+        	let result;
+
+        	if (style != undefined)  {
+				names[1] = style
+			}
+			if (content != undefined) {
+				names[0] = content
+			}
+
 			// spawn new child process to call the python script
 			const python = spawn('python3', ['image.py', names[0], names[1]]);
-			const style = names[0].split("-")[1].split(".")[0] + "-" + names[1].split("-")[1].split(".")[0] + ".png";
+			
+
+			result = names[0].split("-")[1].split(".")[0] + "-" + names[1].split("-")[1].split(".")[0] + ".png";
+
 
 			urls.push({
 				content: `http://localhost:5000/${names[0]}.png`,
 				style: `http://localhost:5000/${names[1]}`,
-				result: `http://localhost:5000/images/result/${style}`,
+				result: `http://localhost:5000/images/result/${result}`,
 			});
 
 			python.stdout.on('data', function(data) { 
 	        	res.redirect(
-	        		`http://localhost:3000?content=${names[0]}&style=${names[1]}&result=public/images/result/${style}`); 
+	        		`http://localhost:3000?content=${names[0]}&style=${names[1]}&result=public/images/result/${result}`); 
 	        	names = [];
 	 	    });
 
-
+			
 
         } 
     }) 
 })
+
  
 
 

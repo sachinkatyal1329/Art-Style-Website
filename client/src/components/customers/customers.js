@@ -24,7 +24,7 @@ class Customers extends Component {
       <Container maxWidth = "lg">
         <Grid container spacing = {6}>
             {this.state.customers.map(customer => 
-                  <ImageCard urlPath = {customer['result']} />
+                  <ImageCard loading = "lazy" urlPath = {customer['result']} />
               )}
         </Grid>
       </Container>
