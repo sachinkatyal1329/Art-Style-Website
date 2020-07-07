@@ -35,7 +35,7 @@ const fs = require('fs');
 const directoryPath = path.join(__dirname, 'public/images/result/');
 //passsing directoryPath and callback function
 
-const dir = function() {
+const dir = async function() {
 	urls = []
 
 	 fs.readdir(directoryPath, function (err, files) {
@@ -67,7 +67,7 @@ const dir = function() {
 
 
 var storage = multer.diskStorage({ 
-    destination: function (req, file, cb) { 
+    destination: async function (req, file, cb) { 
   
         // Uploads is the Upload_folder_name 
         cb(null, "public/images/") 
@@ -90,7 +90,7 @@ const maxSize = 1 * 1000 * 1000;
 var upload = multer({  
     storage: storage, 
     limits: { fileSize: maxSize }, 
-    fileFilter: function (req, file, cb){
+    fileFilter: async function (req, file, cb){
 
     
         // Set the filetypes, it is optional 
@@ -117,7 +117,7 @@ app.post("/", function (req, res, next) {
 
     // Error MiddleWare for multer file upload, so if any 
     // error occurs, the image would not be uploaded! 
-    upload(req,res,function(err) { 
+    upload(req,res, async function(err) { 
   
         if(err) { 
   
